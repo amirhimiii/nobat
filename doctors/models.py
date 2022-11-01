@@ -24,7 +24,7 @@ class Doctor(models.Model):
     number = PhoneNumberField(verbose_name='phone number')
     sys_number = models.IntegerField(_("Med-System number"),null=True, blank=True)
     slug = models.SlugField()
-    
+    #acitve
     
     def __str__(self):
         return self.user.username

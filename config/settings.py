@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     #APP
     'accounts',
     'doctors',
+    'customers',
     
     
     #Third_party

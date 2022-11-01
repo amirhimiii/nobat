@@ -26,16 +26,18 @@ class Doctor(models.Model):
     slug = models.SlugField()
     
     
-    # def __str__(self):
-    #     return self.user.username
+    def __str__(self):
+        return self.user.username
     
-
-class Information(models.Model):
-    SHIFT_CHOICES = [
+SHIFT_CHOICES = [
         ('online','online'),
         ('phone','phone'),
         ('phone & online','phone & online'),
     ]
+
+
+class Information(models.Model):
+
     
     user = models.OneToOneField(get_user_model(), verbose_name=_("user"), on_delete=models.CASCADE,blank=True ,null=True,related_name='users')
     address = models.TextField(_("address"),null=True,blank=True)

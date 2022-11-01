@@ -4,13 +4,20 @@ from django.contrib.auth import get_user_model
 from phonenumber_field.modelfields import PhoneNumberField
 from django.utils.translation import gettext_lazy as _
 from iranian_cities.fields import OstanField
+from django.utils.text import slugify
+import random
 
 
+
+rand_int = random.randint(100, 500_000)
 
 DOCTOR_LICENSES = {
         ('dr','Doctor'),
         ('au','Authority')
     }
+
+
+
 
 class Doctor(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
@@ -29,17 +36,24 @@ class Doctor(models.Model):
     def __str__(self):
         return self.user.username
     
+    def save(self, *args, **kwargs):
+        self.slug = slugify(f'{self.first_name}-{self.last_name}-{rand_int}')
+        super().save(*args, **kwargs)
+
+
+
+
+
 SHIFT_CHOICES = [
         ('online','online'),
         ('phone','phone'),
         ('phone & online','phone & online'),
     ]
 
-
 class Information(models.Model):
 
     
-    user = models.OneToOneField(get_user_model(), verbose_name=_("user"), on_delete=models.CASCADE,blank=True ,null=True,related_name='users')
+    user = models.OneToOneField(Doctor, verbose_name=_("user"), on_delete=models.CASCADE,blank=True ,null=True,related_name='users')
     address = models.TextField(_("address"),null=True,blank=True)
     image = models.ImageField(_("profile photo"), upload_to='image/personal_image/',null=True,blank=True)
     shift = models.CharField(_("taking turns online/phone"),choices =SHIFT_CHOICES ,max_length=20,null=True,blank=True)
@@ -47,6 +61,11 @@ class Information(models.Model):
     about = models.TextField(_("about me"),null=True,blank=True)
     active =models.BooleanField(_("active user?"), default=True)
     datetime_created = models.DateTimeField(_("date created"), auto_now=True)
+    slug = models.SlugField(null=True,blank=True)
+
+    def get_slug(self):
+        slug = self.users__slug
+        return slug
 
 
     class Meta:

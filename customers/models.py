@@ -14,3 +14,7 @@ class Customer(models.Model):
     age = models.PositiveSmallIntegerField()
     number = PhoneNumberField(verbose_name='phone number')
     #active
+
+    def __str__(self):
+        return self.user.username
+    

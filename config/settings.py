@@ -37,8 +37,25 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
 
-    'accounts'
+    #APP
+    'accounts',
+    'doctors',
+    
+    
+    #Third_party
+    'rest_framework',
+    'dj_rest_auth',
+    'rest_framework.authtoken',
+    'dj_rest_auth.registration',
+    
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    
+    "phonenumber_field",
+    'iranian_cities',
 ]
 
 MIDDLEWARE = [
@@ -124,3 +141,26 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 AUTH_USER_MODEL = 'accounts.User'
+
+
+
+# allauth
+# ACCOUNT_FORMS = {'signup': 'accounts.forms.DoctorCreationForm'}
+ACCOUNT_AUTHENTICATION_METHOD ='username'
+ACCOUNT_USERNAME_REQUIRED = True
+ACCOUNT_UNIQUE_EMAIL = True
+ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_EMAIL_VERIFICATION = 'none'
+ACCOUNT_LOGIN_ATTEMPTS_LIMIT = 5
+ACCOUNT_SIGNUP_PASSWORD_ENTER_TWICE = True
+ACCOUNT_SESSION_REMEMBER = True
+ACCOUNT_EMAIL_CONFIRMATION_EXPIRE_DAYS = 3
+
+
+# phone validate
+PHONENUMBER_DB_FORMAT = 'E164'
+PHONENUMBER_DEFAULT_REGION = 'IR'
+
+
+
+SITE_ID = 1

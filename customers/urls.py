@@ -5,7 +5,7 @@ from allauth.account.views import *
 
 urlpatterns = [
     # path('signup/', doctor_signup,name='account_signup'),
-    path('customers/',customer_signup,name= 'customer_signup')
+    path('signup/',customer_signup,name= 'account_signup'),
     path("login/", login, name="account_login"),
     path("logout/", logout, name="account_logout"),
     path(

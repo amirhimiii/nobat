@@ -17,7 +17,7 @@ class UserUpdatePermissions(permissions.BasePermission):
     def has_object_permission(self, request, view, obj):
         if request.method in SAFE_METHODS:
             return True
-        return bool(
-            request.user== obj.user or request.user.is_staff
-            )
+        # return bool(
+        #     request.user== obj.user or request.user.is_staff
+        #     )
         

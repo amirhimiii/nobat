@@ -3,6 +3,9 @@ from .views import *
 
 from allauth.account.views import * 
 
+
+
+
 urlpatterns = [
     # path('signup/', doctor_signup,name='account_signup'),
     path('signup/',customer_signup,name= 'account_signup'),

@@ -10,3 +10,6 @@ class Customer(SignupView):
     view_name = 'customer_signup'
 
 customer_signup = Customer.as_view()
+
+
+

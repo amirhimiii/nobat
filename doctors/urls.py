@@ -8,7 +8,8 @@ from allauth.account.views import *
 
 urlpatterns= [
     path('', doctor_list, name='doctor-list'),
-    path('detail/<slug:slug>/', doctor_view, name='doctor-detail'),
+    path('information/', doctor_create, name='information-create'),
+    path('detail/<slug:slug>/',detail_update_delete, name='detail-update-delete')
 ]
 
 
@@ -17,7 +18,6 @@ urlpatterns= [
 
 urlpatterns += [
     path('signup/', doctor_signup,name='account_signup'),
-    # path('customer/',customer_signup,name= 'customer_signup')
     path("login/", login, name="account_login"),
     path("logout/", logout, name="account_logout"),
     path(
